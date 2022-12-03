@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="block">
+            <section class="form signup">
+                <header class= "head_form">Register</header>
+                <form action="#" enctype="multipart/form-data">
+                    <div class="erreur-txt"></div>
+                    <div class="name-details">
+                        <div class="field input">
+                            <label>Nom</label>
+                            <input type="text" name="nom" placeholder="nom" required>
+                        </div>
+                        <div class="field input">
+                            <label>Prénom</label>
+                            <input type="text" name="prenom" placeholder="prénom" required>
+                        </div>
+                    </div>
+                    <div class="field input">
+                            <label>Username</label>
+                            <input type="text" name="username" placeholder="Entrez votre username" required>
+                    </div>
+                    <div class="field input">
+                            <label>Adresse mail</label>
+                            <input type="text" name="email" placeholder="Entrez votre Email" required>
+                    </div>
+                    <div class="field input">
+                            <label>Mot de passe</label>
+                            <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+                            <i class="bi bi-eye"></i>
+                    </div>
+                    <div class="field image">
+                            <label>Choissez une image</label>
+                            <input type="file" name="image" required>
+                    </div>
+                    <div class="field button">
+                        <input type="submit" value="Confirmez">
+                    </div>
+                </form>
+                <div class="link">Avez vous deja un compte? <a href="login.php">Connectez-vous!</a></div>
+            </section>
+        </div>
+{% endblock %}
