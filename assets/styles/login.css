@@ -1,0 +1,14 @@
+@import "~bootstrap";
+
+
+.btnn{
+    margin-top: 13px;
+    height: 45px;
+    border: none;
+    font-size: 17px;
+    font-weight: 400;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -10,6 +10,12 @@ import './styles/app.css';
 
 import './styles/register.css';
 
+import './styles/login.css';
+
+
+
+
+
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything

@@ -1,4 +1,5 @@
-@import url('https://font.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import "~bootstrap";
+
 *{
     margin: 0;
     padding: 0;
@@ -7,7 +8,7 @@
     font-family: 'Poppins' sans-serif;
 }
 
-body{
+.login_reg{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,10 +38,10 @@ body{
     padding-bottom: 10px;
     border-bottom: 1px solid #e6e6e6
 }
-.form form{
+.big_form{
     margin: 20px 0;
 }
-.form form .erreur-txt{
+.erreur-txt{
     color: #721c24;
     background: #f8d7da;
     padding: 8px 10px;
@@ -50,28 +51,28 @@ body{
     border: 1px solid #f5c6cb;
     display: none;
 }
-.form form .name-details{
+.name-details{
     display: flex;
 }
-form .name-details .field:first-child{
+.big_form .name-details .field:first-child{
     margin-right: 10px;
 }
-form .name-details .field:last-child{
+.big_form .name-details .field:last-child{
     margin-left: 10px;
 }
-.form form .field{
+.field{
     display: flex;
     position: relative;
     flex-direction: column;
     margin-bottom: 10px;
 }
-.form form .field label{
+.field label{
     margin-bottom: 2px;
 }
-.form form .field input{
+.field input{
     outline: none;
 }
-.form form .input input{
+.input input{
     height: 40px;
     width: 100%;
     font-size: 16px;
@@ -80,10 +81,10 @@ form .name-details .field:last-child{
     border-radius: 5px;
 }
 
-.form form .image input{
+.image input{
     font-size: 17px;
 }
-.form form .button input{
+.button input{
     margin-top: 13px;
     height: 45px;
     border: none;
@@ -94,7 +95,7 @@ form .name-details .field:last-child{
     border-radius: 5px;
     cursor: pointer;
 }
-.form form .field i{
+.field svg{
     position: absolute;
     right: 15px;
     color: #ccc;
@@ -102,18 +103,18 @@ form .name-details .field:last-child{
     transform:translateY(-50%);
     cursor: pointer;
 }
-.form form .field i.active::before{
+.field svg.active::before{
     color: #333;
     content: "\f070";
 }
-.form .link{
+.link{
     text-align: center;
     margin: 10px 0;
     font-size: 17px;
 }
-.form .link a{
+.link a{
     color: #333;
 }
-.form .link a:hover{
+.link a:hover{
     text-decoration: underline;
 }

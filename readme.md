@@ -52,3 +52,37 @@ const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
+
+
+#### creation de formulairre symfony register
+composer require symfony/form
+
+#### création de login
+symfony console make:auth
+faire les modification necessaire
+
+#### insere des photo
+
+composer require vich/uploader-bundle
+
+veuillez a bien ecrire le code de l'entité
+use Vich\UploaderBundle\Form\Type\VichImageType;
+
+class Form extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        // ...
+
+        $builder->add('imageFile', VichImageType::class, [
+            'required' => false,
+            'allow_delete' => true,
+            'delete_label' => '...',
+            'download_label' => '...',
+            'download_uri' => true,
+            'image_uri' => true,
+            'imagine_pattern' => '...',
+            'asset_helper' => true,
+        ]);
+    }
+}

@@ -1,0 +1,87 @@
+<!-- center posts -->
+        <div class="col-md-6">
+          <div class="row">
+            <!-- left posts-->
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">
+                <!-- post state form -->
+                  
+                  <div class="box profile-info n-border-top">
+                       {{ form_start(postForm) }} 
+                         {# <textarea class="form-control input-lg p-text-area" rows="2" placeholder="Whats in your mind today?"></textarea> #}
+                         <div class="">{{ form_widget(postForm.post, {'attr':{'class':'form-control input-lg p-text-area '}}) }}</div> 
+                        <div class="box-footer box-form">
+                          <button type="submit" class="btn btn-azure pull-right">Post</button>
+                          <ul class="nav nav-pills">
+                              <li><a href="#"><i class="fa fa-map-marker"></i></a></li>
+                              <li><a href="#"><i class="fa fa-camera"></i></a></li>
+                              <li><a href="#"><i class=" fa fa-film"></i></a></li>
+                              <li><a href="#"><i class="fa fa-microphone"></i></a></li>
+                          </ul>
+                        </div>
+                   
+                       {{ form_end(postForm) }} 
+                  </div><!-- end post state form -->
+                
+                  <!--   posts -->
+                   {# {% for publication in publications %}  #}
+                  <div class="box box-widget">
+                    <div class="box-header with-border">
+                      <div class="user-block">
+                         <img class="img-circle" src="{{ vich_uploader_asset(user, user.imageFile) }}" alt="User Image">
+                        <span class="username"><a href="#">{{app.user.nom}} {{app.user.prenom}}</a></span>
+                        <span class="description">Shared publicly - 7:30 PM Today</span>
+                      </div>
+                    </div>
+                  
+                    <div class="box-body" style="display: block;">
+                       <img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo"> 
+                      {# <img class="img-responsive show-in-modal" src="{{ publication.photo}}" alt="Photo"> #}
+                       <p></p> 
+                      <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                      <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                      {# <span class="pull-right text-muted">127 likes - 3 comments</span> #}
+                      
+                    </div>
+                    <div class="box-footer box-comments" style="display: block;">
+                      <div class="box-comment">
+                        <img class="img-circle img-sm" src="img/Friends/guy-2.jpg" alt="User Image">
+                        <div class="comment-text">
+                          <span class="username">
+                          Maria Gonzales
+                          <span class="text-muted pull-right">8:03 PM Today</span>
+                          </span>
+                          It is a long established fact that a reader will be distracted
+                          by the readable content of a page when looking at its layout.
+                        </div>
+                      </div>
+
+                      <div class="box-comment">
+                        <img class="img-circle img-sm" src="img/Friends/guy-3.jpg" alt="User Image">
+                        <div class="comment-text">
+                          <span class="username">
+                          Luna Stark
+                          <span class="text-muted pull-right">8:03 PM Today</span>
+                          </span>
+                          It is a long established fact that a reader will be distracted
+                          by the readable content of a page when looking at its layout.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box-footer" style="display: block;">
+                      <form action="#" method="post">
+                        <img class="img-responsive img-circle img-sm" src="img/Friends/guy-3.jpg" alt="Alt Text">
+                        <div class="img-push">
+                          <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                        </div>
+                      </form>
+                    </div>
+                  </div><!--  end posts-->
+                   {# {% endfor %}  #}
+                </div>
+              </div>
+              
+            </div><!-- end left posts-->
+          </div>
+        </div><!-- end  center posts -->

@@ -1,0 +1,35 @@
+<!-- Begin page content -->
+    <div class="container page-content ">
+      <div class="row">
+        <!-- left links -->
+        <div class="col-md-3">
+          <div class="profile-nav">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="user-heading round">
+                  <a href="#">
+                      {# <img src="img/Friends/guy-3.jpg" alt=""> #}
+                  
+                      <img src="{{ vich_uploader_asset(user, user.imageFile) }}" alt="">
+                  </a>
+                  <h1>{{app.user.nom}} {{app.user.prenom}}</h1>
+                  <p>@username</p>
+                </div>
+
+                <ul class="nav nav-pills nav-stacked">
+                  <li class="active"><a href="#"> <i class="fa fa-user"></i> News feed</a></li>
+                  <li>
+                    <a href="#"> 
+                      <i class="fa fa-envelope"></i> Messages 
+                      <span class="label label-info pull-right r-activity">9</span>
+                    </a>
+                  </li>
+                  <li><a href="#"> <i class="fa fa-calendar"></i> Events</a></li>
+                  <li><a href="#"> <i class="fa fa-image"></i> Photos</a></li>
+                  <li><a href="#"> <i class="fa fa-share"></i> Browse</a></li>
+                  <li><a href="#"> <i class="fa fa-floppy-o"></i> Saved</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div><!-- end left links -->
