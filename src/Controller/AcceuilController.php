@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Publication;
+use App\Entity\Like;
+use App\Entity\Share;
 use App\Entity\User;
+use App\Entity\Commentaire;
 use App\Form\PostFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,21 +25,12 @@ class AcceuilController extends AbstractController
     
     public function index(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PublicationRepository $publicaRepo, ManagerRegistry $doctrine): Response
     {
+        
+        //on récupére les publications
+        $publications = $publicaRepo->findAll();
+
         //récupération de l'utilisateur connecté
         $user= $this->getUser();
-
-        return $this->render('acceuil/index.html.twig', ['user' => $user]);
-    }
-
-
-    #[Route('/publication', name: 'app_publication')]
-    public function createpublication(Request $request, EntityManagerInterface $entityManager, Publication $publication, SluggerInterface $slugger): Response
-    {
-
-        // //on récupére les publications
-        // $publications = $publicaRepo->findAll();
-
-         
 
         //créer une nouvelle publication
         $publication = new Publication();
@@ -49,10 +43,8 @@ class AcceuilController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-    
-            $user = $this->getUser(); 
+            
             $publication = $form->getData();
-
             $entityManager = $doctrine->getManager();
             $entityManager->persist($publication);
             $entityManager->flush();
@@ -61,13 +53,14 @@ class AcceuilController extends AbstractController
         }
 
         return $this->render('acceuil/index.html.twig', [
-            'postForm' => $form->createView()
-            // 'publications' => $publications,
+            'postForm' => $form->createView(),
+            'user' => $user,
+            'publications' => $publications,
             
         ]);
-
     }
     
+
    
 
 }
