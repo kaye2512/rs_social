@@ -25,7 +25,8 @@
                   </div><!-- end post state form -->
                 
                   <!--   posts -->
-                   {# {% for publication in publications %}  #}
+                  {# on recupere la publication saisi par cette utilisateur #}
+                  {% for publication in user.publications %}
                   <div class="box box-widget">
                     <div class="box-header with-border">
                       <div class="user-block">
@@ -38,7 +39,7 @@
                     <div class="box-body" style="display: block;">
                        <img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo"> 
                       {# <img class="img-responsive show-in-modal" src="{{ publication.photo}}" alt="Photo"> #}
-                       <p></p> 
+                       <p>{{publication.post}}</p> 
                       <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                       <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                       {# <span class="pull-right text-muted">127 likes - 3 comments</span> #}
@@ -78,7 +79,7 @@
                       </form>
                     </div>
                   </div><!--  end posts-->
-                   {# {% endfor %}  #}
+                  {% endfor %} 
                 </div>
               </div>
               

@@ -21,6 +21,7 @@ class PostFormType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'What is in your mind today?'
                 )))
+            // ->add('post', SubmitType::class)  
         ;
     }
 
