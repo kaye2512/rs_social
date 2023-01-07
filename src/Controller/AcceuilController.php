@@ -6,6 +6,7 @@ use App\Entity\Publication;
 use App\Entity\User;
 use App\Entity\Commentaire;
 use App\Form\PostFormType;
+use App\Form\CommentFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +21,7 @@ use DateTime;
 
 class AcceuilController extends AbstractController
 {
-    #[Route('/acceuil', name: 'app_acceuil')]
+    #[Route('/acceuil', name: 'acceuil_')]
     
     public function index(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PublicationRepository $publicaRepo, ManagerRegistry $doctrine): Response
     {
@@ -66,7 +67,7 @@ class AcceuilController extends AbstractController
         $commentform = $this->createForm(CommentFormType::class, $commentaire);
 
         //traitement du formulaire commentaire
-        $commentform = handleRequest($request);
+        $commentform -> handleRequest($request);
         
         if ($commentform->isSubmitted() && $commentform->isValid()){
              // on recupère l'utilisateur correspondant
@@ -84,8 +85,16 @@ class AcceuilController extends AbstractController
             
         ]);
     }
-    
 
-   
+
+    #[Route('/profile', name: 'profiles')]
+
+    public function profile(){
+        
+        return $this->render('profile/index.html.twig', [
+            'controller_name' => 'ProfileController',
+        ]);
+    }
+
 
 }
