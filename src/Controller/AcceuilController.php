@@ -32,6 +32,7 @@ class AcceuilController extends AbstractController
         //récupération de l'utilisateur connecté
         $user= $this->getUser();
 
+        
         //créer une nouvelle publication
         $publication = new Publication();
 
@@ -57,7 +58,7 @@ class AcceuilController extends AbstractController
             $entityManager->persist($publication);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_acceuil');
+            return $this->redirectToRoute('acceuil_');
         }
 
         // debut de formulaire commentaire
@@ -74,6 +75,20 @@ class AcceuilController extends AbstractController
              $userid = $user ->getId("user_id");
              // on va chercher utilisateur corespondant
              $usid = $entityManager->getRepository(User::class)->find($userid);
+            // on recupère la publication correspondant
+             $publicationid = $publications->getId("post_id");
+            // on va chercher la plucation correspondant
+             $pubid = $entityManager->getRepository(Publication::class)->find($publicationid);
+
+             $commentaire->setUser($usid);
+             $commentaire->setPublication($pubid);
+            // on récupère les données saisie
+             $commentaire = $commentform->getData();
+            //on envoie les informations dans la base
+             $entityManager->persist($commentaire);
+             $entityManager->flush();
+
+            return $this->redirectToRoute('acceuil_');
 
              //a ajouter après avoir fais la partie demande d'amis
         }
@@ -82,6 +97,7 @@ class AcceuilController extends AbstractController
             'postForm' => $form->createView(),
             'user' => $user,
             'publications' => $publications,
+            'commentsForm' => $commentaire
             
         ]);
     }
