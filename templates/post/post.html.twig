@@ -71,12 +71,10 @@
                       </div>
                     </div>
                     <div class="box-footer" style="display: block;">
-                      <form action="#" method="post">
+                      {{ form_start(commentsForm) }}
                         <img class="img-responsive img-circle img-sm" src="img/Friends/guy-3.jpg" alt="Alt Text">
-                        <div class="img-push">
-                          <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-                        </div>
-                      </form>
+                       
+                      {{ form_end(commentsForm) }}
                     </div>
                   </div><!--  end posts-->
                   {% endfor %} 

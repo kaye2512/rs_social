@@ -31,8 +31,7 @@ class AcceuilController extends AbstractController
 
         //récupération de l'utilisateur connecté
         $user= $this->getUser();
-
-        
+     
         //créer une nouvelle publication
         $publication = new Publication();
 
@@ -97,7 +96,7 @@ class AcceuilController extends AbstractController
             'postForm' => $form->createView(),
             'user' => $user,
             'publications' => $publications,
-            'commentsForm' => $commentaire
+            'commentsForm' => $commentform->createView()
             
         ]);
     }
