@@ -18,6 +18,7 @@ use App\Repository\PublicationRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use DateTime;
+use App\Repository\CommentaireRepository;
 
 class AcceuilController extends AbstractController
 {
@@ -31,7 +32,11 @@ class AcceuilController extends AbstractController
 
         //récupération de l'utilisateur connecté
         $user= $this->getUser();
-     
+
+        //récupérer les publications de l'utilisateur connecté
+        $pubUser =  $publicaRepo->findBy(['id' => $user->getId()]); 
+        
+        $commUser = $pubUser[0]->getCommentaires();
         //créer une nouvelle publication
         $publication = new Publication();
 
@@ -60,43 +65,10 @@ class AcceuilController extends AbstractController
             return $this->redirectToRoute('acceuil_');
         }
 
-        // debut de formulaire commentaire
-        // on crée un nouveau commentaire
-        $commentaire = new Commentaire();
-        //recupération du formulaire
-        $commentform = $this->createForm(CommentFormType::class, $commentaire);
-
-        //traitement du formulaire commentaire
-        $commentform -> handleRequest($request);
-        
-        if ($commentform->isSubmitted() && $commentform->isValid()){
-             // on recupère l'utilisateur correspondant
-             $userid = $user ->getId("user_id");
-             // on va chercher utilisateur corespondant
-             $usid = $entityManager->getRepository(User::class)->find($userid);
-            // on recupère la publication correspondant
-             $publicationid = $publications->getId("post_id");
-            // on va chercher la plucation correspondant
-             $pubid = $entityManager->getRepository(Publication::class)->find($publicationid);
-
-             $commentaire->setUser($usid);
-             $commentaire->setPublication($pubid);
-            // on récupère les données saisie
-             $commentaire = $commentform->getData();
-            //on envoie les informations dans la base
-             $entityManager->persist($commentaire);
-             $entityManager->flush();
-
-            return $this->redirectToRoute('acceuil_');
-
-             //a ajouter après avoir fais la partie demande d'amis
-        }
 
         return $this->render('acceuil/index.html.twig', [
             'postForm' => $form->createView(),
-            'user' => $user,
-            'publications' => $publications,
-            'commentsForm' => $commentform->createView()
+            'publications' => $publications
             
         ]);
     }

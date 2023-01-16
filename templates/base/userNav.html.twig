@@ -10,7 +10,7 @@
                   <a href="#">
                       {# <img src="img/Friends/guy-3.jpg" alt=""> #}
                   
-                      <img src="{{ vich_uploader_asset(user, user.imageFile) }}" alt="">
+                      <img src="{{ vich_uploader_asset(app.user, app.user.imageFile) }}" alt="">
                   </a>
                   <h1>{{app.user.nom}} {{app.user.prenom}}</h1>
                   <p>@username</p>

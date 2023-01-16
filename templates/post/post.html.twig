@@ -26,11 +26,11 @@
                 
                   <!--   posts -->
                   {# on recupere la publication saisi par cette utilisateur #}
-                  {% for publication in user.publications %}
+                  {% for publication in app.user.publications %}
                   <div class="box box-widget">
                     <div class="box-header with-border">
                       <div class="user-block">
-                         <img class="img-circle" src="{{ vich_uploader_asset(user, user.imageFile) }}" alt="User Image">
+                         <img class="img-circle" src="{{ vich_uploader_asset(app.user, app.user.imageFile) }}" alt="User Image">
                         <span class="username"><a href="#">{{app.user.nom}} {{app.user.prenom}}</a></span>
                         <span class="description">Shared publicly - 7:30 PM Today</span>
                       </div>
@@ -71,16 +71,19 @@
                       </div>
                     </div>
                     <div class="box-footer" style="display: block;">
-                      {{ form_start(commentsForm) }}
-                        <img class="img-responsive img-circle img-sm" src="img/Friends/guy-3.jpg" alt="Alt Text">
-                       
-                      {{ form_end(commentsForm) }}
+                        {# {{ form_start(commentsForm) }} #}
+                        <form action="{{ path('app_comment', {id : publication.id}) }}"  role="form">
+                            <img class="img-responsive img-circle img-sm" src="img/Friends/guy-3.jpg" alt="Alt Text">
+                             <div class="img-push">
+                              <input type="text" class="form-control input-sm" placeholder="Press enter to post comment" name="message" />
+                             </div>
+                        </form>
+                        {# {{ form_end(commentsForm) }} #}
                     </div>
                   </div><!--  end posts-->
-                  {% endfor %} 
+                  {% endfor %}
                 </div>
               </div>
-              
             </div><!-- end left posts-->
           </div>
         </div><!-- end  center posts -->
