@@ -22,9 +22,15 @@ use App\Repository\CommentaireRepository;
 
 class AcceuilController extends AbstractController
 {
-    #[Route('/acceuil', name: 'acceuil_')]
+    #[Route('/acceuil', name: 'app_acceuil')]
     
-    public function index(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PublicationRepository $publicaRepo, ManagerRegistry $doctrine): Response
+    public function index(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger,
+        PublicationRepository $publicaRepo,
+        ManagerRegistry $doctrine,
+        CommentaireRepository $commentRepo): Response
     {
         
         //on récupére les publications
@@ -32,7 +38,6 @@ class AcceuilController extends AbstractController
 
         //récupération de l'utilisateur connecté
         $user= $this->getUser();
-
         //récupérer les publications de l'utilisateur connecté
         $pubUser =  $publicaRepo->findBy(['id' => $user->getId()]); 
         
@@ -62,13 +67,15 @@ class AcceuilController extends AbstractController
             $entityManager->persist($publication);
             $entityManager->flush();
 
-            return $this->redirectToRoute('acceuil_');
+            return $this->redirectToRoute('app_acceuil');
         }
 
+        $commentaire = $commentRepo->findAll();
 
         return $this->render('acceuil/index.html.twig', [
             'postForm' => $form->createView(),
-            'publications' => $publications
+            'publications' => $publications,
+            'commentaire' => $commentaire
             
         ]);
     }

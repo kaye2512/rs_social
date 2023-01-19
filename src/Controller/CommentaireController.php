@@ -62,7 +62,7 @@ class CommentaireController extends AbstractController
         //on récupére les publications
         $publications = $publicaRepo->findAll();
 
-        return $this->redirectToRoute('acceuil_');
+        return $this->redirectToRoute('app_acceuil');
     }
 
 
