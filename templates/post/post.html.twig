@@ -8,24 +8,25 @@
                 <!-- post state form -->
                   
                   <div class="box profile-info n-border-top">
-                       {{ form_start(postForm) }} 
-                         {# <textarea class="form-control input-lg p-text-area" rows="2" placeholder="Whats in your mind today?"></textarea> #}
-                         <div class="">{{ form_widget(postForm.post, {'attr':{'class':'form-control input-lg p-text-area '}}) }}</div> 
-                        <div class="box-footer box-form">
-                          <button type="submit" class="btn btn-azure pull-right">Post</button>
-                          <ul class="nav nav-pills">
-                              <li><a href="#"><i class="fa fa-map-marker"></i></a></li>
-                              <li><a href="#"><i class="fa fa-camera"></i></a></li>
-                              <li><a href="#"><i class=" fa fa-film"></i></a></li>
-                              <li><a href="#"><i class="fa fa-microphone"></i></a></li>
-                          </ul>
-                        </div>
-                   
-                       {{ form_end(postForm) }} 
+                      <form action="{{ path('app_new_post') }}" method="get" role="form">
+                          <textarea class="form-control input-lg p-text-area" rows="2" placeholder="Whats in your mind today?" name="post" id="message"></textarea>
+                          {# <div class="">{{ form_widget(postForm.post, {'attr':{'class':'form-control input-lg p-text-area '}}) }}</div>  #}
+                          <div class="box-footer box-form">
+                              <button type="submit" class="btn btn-azure pull-right" name="message">Post</button>
+                              <ul class="nav nav-pills">
+                                  <li><a href="#"><i class="fa fa-map-marker"></i></a></li>
+                                  <li><a href="#"><i class="fa fa-camera"></i></a></li>
+                                  <li><a href="#"><i class=" fa fa-film"></i></a></li>
+                                  <li><a href="#"><i class="fa fa-microphone"></i></a></li>
+                              </ul>
+                          </div>
+                      </form>
+
                   </div><!-- end post state form -->
+                    <!-- post -->
+
+                    <!-- on recupere toutes les publications -->
                 
-                  <!--   posts -->
-                  {# on recupere la publication saisi par cette utilisateur #}
                   {% for publication in app.user.publications %}
                   <div class="box box-widget">
                     <div class="box-header with-border">
@@ -39,14 +40,16 @@
                     <div class="box-body" style="display: block;">
                        <img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo"> 
                       {# <img class="img-responsive show-in-modal" src="{{ publication.photo}}" alt="Photo"> #}
-                       <p>{{publication.post}}</p> 
+                       <p>{{ publication.post }}</p>
                       <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                       <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                       {# <span class="pull-right text-muted">127 likes - 3 comments</span> #}
                       
                     </div>
+
+                     <!-- comment part views part -->
                     <div class="box-footer box-comments" style="display: block;">
-                        {% for commentaires in commentaire %}
+                        {% for comment in comments %}
                       <div class="box-comment">
                         <img class="img-circle img-sm" src="{{ vich_uploader_asset(app.user, app.user.imageFile) }}" alt="User Image">
                         <div class="comment-text">
@@ -54,19 +57,24 @@
                           {{app.user.nom}} {{app.user.prenom}}
                           <span class="text-muted pull-right">8:03 PM Today</span>
                           </span>
-                            {{commentaires.messages}}
+                            {{comment.messages}}
                         </div>
                       </div>
                         {% endfor %}
                     </div>
+                      <!-- end comment part views part -->
+
+                      <!-- comment form part views part -->
                     <div class="box-footer" style="display: block;">
-                        <form action="{{ path('app_comment', {id : publication.id}) }}"  role="form">
+                        <form action=" {{ path('app_comment', {id : publication.id}) }}"  role="form">
                             <img class="img-responsive img-circle img-sm" src="img/Friends/guy-3.jpg" alt="Alt Text">
                              <div class="img-push">
-                              <input type="text" class="form-control input-sm" placeholder="Press enter to post comment" name="message" />
+                              <input type="text" class="form-control input-sm" placeholder="Press enter to post comment" name="messages" />
                              </div>
                         </form>
                     </div>
+                      <!-- end comment form part views part -->
+
                   </div><!--  end posts-->
                   {% endfor %}
                 </div>

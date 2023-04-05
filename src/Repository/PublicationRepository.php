@@ -38,7 +38,19 @@ class PublicationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    /**
+     * @return Publication[] Returns an array of Publication objects
+     */
+    public function findByRecentOrder(): array
+    {
 
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 //    /**
 //     * @return Publication[] Returns an array of Publication objects
 //     */

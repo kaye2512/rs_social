@@ -34,7 +34,7 @@ class CommentaireController extends AbstractController
     )
     {
 
-        $message =$request->query->get("message");
+        $message =$request->query->get("messages");
 
         //récupération de l'utilisateur connecté
         $user= $this->getUser();
@@ -52,16 +52,6 @@ class CommentaireController extends AbstractController
          $entityManager->flush();
 
          //a ajouter après avoir fais la partie demande d'amis
-
-
-       // $response = new Response(null, $commentform->isSubmitted() ? 422 : 200);
-
-        //récupération du formulaire
-        $form = $this->createForm(PostFormType::class, $publication);
-
-        //on récupére les publications
-        $publications = $publicaRepo->findAll();
-
         return $this->redirectToRoute('app_acceuil');
     }
 
